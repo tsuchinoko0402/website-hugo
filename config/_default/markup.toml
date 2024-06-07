@@ -6,7 +6,13 @@
   unsafe = true
 
 [highlight]
-  noClasses = false
+  noClasses = true
+  style = 'monokai'
+  anchorLineNos = true
+  guessSyntax = true
+  lineNos = true
+  lineNumbersInTable = false
+
 
 [tableOfContents]
   startLevel = 2

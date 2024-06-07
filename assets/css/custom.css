@@ -1,0 +1,34 @@
+@font-face {
+    font-family: font;
+    src: url('/fonts/MPLUS1p-Regular.ttf');
+}
+
+html {
+    font-family: font;
+}
+
+code {
+    font-family: font;
+    src: url('/fonts/HackGenConsole-Regular.ttf');
+}
+
+h1:first-letter {
+    font-size: 1.5em;
+    color: #7cc7e9;
+}
+
+h2 {
+    padding: 0.5em;/*文字周りの余白*/
+    background: #7cc7e9;/*背景色*/
+    border-left: solid 6px #7E1281;/*左線（実線 太さ 色）*/
+}
+
+h3 {
+    background: #b1e5fc; /*背景色*/
+    padding: 0.5em;/*文字まわり（上下左右）の余白*/
+}
+
+h4 {
+    background: #d9eef7 ;/*背景色*/
+    padding: 0.5em;/*文字まわり（上下左右）の余白*/
+}
