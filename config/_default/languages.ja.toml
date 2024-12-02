@@ -14,7 +14,7 @@ title = "OKAZAKI Shogo's Website"
   # description = "My awesome website"
   # copyright = "Copy, _right?_ :thinking_face:"
 
-[author]
+[params.author]
   name = "OKAZAKI Shogo"
   image = "img/profile.png"
 #   headline = "I'm only human"
