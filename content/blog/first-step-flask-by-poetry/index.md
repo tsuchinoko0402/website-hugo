@@ -2,7 +2,6 @@
 title = 'Poetry を使って Python のプロジェクトを作成する'
 date = 2024-12-03T21:56:40+09:00
 tags = ['Python', 'Poetry','ひとりアドベントカレンダー2024']
-draft = true
 +++
 
 ## はじめに
