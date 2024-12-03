@@ -1,6 +1,7 @@
 ---
 title: ボーイスカウト阪神さくら地区加盟員向けWebシステムリニューアル（ひとり）プロジェクト：要件を整理してみる
 slug: new-web-system-flask-by-make-requirements-definition
+tags: ['ひとりアドベントカレンダー2024']
 date: 2024-12-02
 ---
 
