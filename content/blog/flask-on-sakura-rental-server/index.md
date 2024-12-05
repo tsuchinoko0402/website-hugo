@@ -1,5 +1,5 @@
 ---
-title: 'Flask on Sakura Rental Server'
+title: 'Flask アプリをさくらのレンタルサーバで動かす'
 date: 2024-12-05T23:09:15+09:00
 tags: ["ひとりアドベントカレンダー2024","Python","Flask", "cgi"]
 author: "OKAZAKI Shogo"
