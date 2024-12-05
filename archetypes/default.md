@@ -3,7 +3,7 @@ title: '{{ replace .File.ContentBaseName "-" " " | title }}'
 date: {{ .Date }}
 categories: [""]
 tags: ["","",""]
-Authors: "OKAZAKI Shogo"
+author: "OKAZAKI Shogo"
 toc: true
 autoCollapseToc: false
 draft: true
