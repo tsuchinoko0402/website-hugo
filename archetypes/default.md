@@ -1,15 +1,12 @@
 ---
 title: '{{ replace .File.ContentBaseName "-" " " | title }}'
 date: {{ .Date }}
-categories: [""]
 tags: ["","",""]
 author: "OKAZAKI Shogo"
-toc: true
-autoCollapseToc: false
 draft: true
 ---
 
-### 1. はじめに
+## はじめに
 xxxx
 
 ### x. Markdown CheetSheet
