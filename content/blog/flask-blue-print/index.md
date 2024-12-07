@@ -3,7 +3,6 @@ title: 'Flask の Blueprint を使う'
 date: 2024-12-07T00:40:20+09:00
 tags: ["ひとりアドベントカレンダー2024","Python","Flask"]
 author: "OKAZAKI Shogo"
-draft: true
 ---
 
 ## はじめに
