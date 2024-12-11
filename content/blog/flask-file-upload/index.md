@@ -140,19 +140,20 @@ def index():
         flash("タイトルが入力されていません")
         is_file_check_ok = False
 
-    if __allowed_file(file.filename) == False:
+    origin_filename = file.filename
+    if __allowed_file(origin_filename) == False:
         flash("ファイルの拡張子が正しくありません")
         is_file_check_ok = False
-    
+
     if is_file_check_ok:
-        filename = secure_filename(file.filename)
+        filename = secure_filename(datetime.now().strftime("%Y%m%d_%H%M%S_") + origin_filename)
         file.save(os.path.join(dev.UPLOAD_FOLDER, filename))
-        return render_template("regist_file_form.html", filename=filename)
+        return render_template("regist_file_form.html", filename=origin_filename)
 ```
 
 ### `secure_filename()` について
 
-secure_filenameは、ファイル名を安全な形式に変換してくれる関数。以下のように、特殊文字やディレクトリトラバーサル攻撃を防ぐ役割がある。
+`secure_filename()` は、ファイル名を安全な形式に変換してくれる関数。以下のように、特殊文字やディレクトリトラバーサル攻撃を防ぐ役割がある。
 
 変換例：
 
@@ -161,6 +162,8 @@ secure_filenameは、ファイル名を安全な形式に変換してくれる�
 | `../../etc/passwd`     | `etc_passwd`    |
 | `hello world!.jpg`      | `hello_world.jpg`    | 
 | `my<script>.png`      | `my_script_.png` |
+
+今回の処理の場合、日本語を含むファイル名は全て消えてしまうため、プレフィックスとして日時をつけたファイル名を `secure_filename()` に渡して変換することとした。
 
 ## 動作例
 
