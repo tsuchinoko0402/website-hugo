@@ -1,7 +1,7 @@
 ---
 title: 'Flask でファイルアップロード機能を実装&フォームにメッセージを表示する'
 date: 2024-12-11T20:57:04+09:00
-tags: ["ひとりアドベントカレンダー2024","Python","Flask", "cgi"]
+tags: ["ひとりアドベントカレンダー2024","Python","Flask"]
 author: "OKAZAKI Shogo"
 ---
 
