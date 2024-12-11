@@ -74,6 +74,46 @@ def index():
     return f"ファイル名: {file_name}"
 ```
 
+### `__init__.py`
+
+先ほど作成したビューを登録する Blueprint を追加する。
+
+```python
+import os
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from instance.config import dev
+
+
+db = SQLAlchemy()
+
+
+def create_app():
+    # appの設定
+    app = Flask(__name__, instance_relative_config=True)
+
+    # configファイルを読み込む
+    config_path = os.path.join("config", "dev.py")
+    app.config.from_pyfile(config_path)
+
+    # DB の設定
+    db.init_app(app)
+
+    # Blueprint の登録
+    from app.views.index import index_bp
+    from app.views.files import files_bp
+    from app.views.regist_file_form import regist_file_form_bp # 新規追加
+    from app.views.regist_file import regist_file_bp # 新規追加
+
+    app.register_blueprint(index_bp)
+    app.register_blueprint(files_bp)
+    app.register_blueprint(regist_file_form_bp) # 新規追加
+    app.register_blueprint(regist_file_bp) # 新規追加
+
+    return app
+
+```
+
 これで アプリを起動し、 `/refist_file_form` にアクセスすると下記のような画面が表示される。
 
 ![画面表示例](./001.png)
