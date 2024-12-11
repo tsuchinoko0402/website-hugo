@@ -129,24 +129,22 @@ def __allowed_file(filename):
 
 @regist_file_bp.route("/", methods=["POST"])
 def index():
-    # POST のリクエストに name が "file" の input があるかを確認  
-    if 'file' not in request.files:
-        flash('ファイルが選択されていません')
-        return redirect(request.url)
-    file = request.files['file']
+    is_file_check_ok = True
+    file = request.files["file"]
 
-    # ユーザーがファイルを選択しない場合、ブラウザはファイル名なしの空のファイルを
-    # 送信するので未然に防ぐ
-    if file.filename == '':
-        flash('ファイルが選択されていません')
-        return redirect(request.url)
-    
-    # ファイルの拡張子が所定のもののみ受け付ける
+    if not file:
+        flash("ファイルが選択されていません")
+        is_file_check_ok = False
+
+    if request.form["title"] == "":
+        flash("タイトルが入力されていません")
+        is_file_check_ok = False
+
     if __allowed_file(file.filename) == False:
-        flash('ファイルの拡張子が正しくありません')
-        return redirect(request.url)
+        flash("ファイルの拡張子が正しくありません")
+        is_file_check_ok = False
     
-    if file and __allowed_file(file.filename):
+    if is_file_check_ok:
         filename = secure_filename(file.filename)
         file.save(os.path.join(dev.UPLOAD_FOLDER, filename))
         return render_template("regist_file_form.html", filename=filename)
