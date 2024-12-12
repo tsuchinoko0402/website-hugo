@@ -36,7 +36,7 @@ author: "OKAZAKI Shogo"
 |       |-- files.py
 |       |-- index.py
 |       |-- regist_file.py  <-- 修正
-|       `-- regist_file_form.py  <-- 修正
+|       `-- regist_file_form.py 
 |-- db
 |   `-- bshssa_member_sys.db
 |-- documents  <-- 新規作成
@@ -165,6 +165,29 @@ def index():
 
 今回の処理の場合、日本語を含むファイル名は全て消えてしまうため、プレフィックスとして日時をつけたファイル名を `secure_filename()` に渡して変換することとした。
 
+## `secret_key` の設定
+
+ファイルをアップロードするにあたって、セッション情報を暗号化する必要があるため、 `SECRET_KEY` の設定を追加する。
+
+```python
+import os
+
+DEBUG = True
+SECRET_KEY = "d56ec64032a3582931e560067426db08" # 新規追加
+
+# プロジェクトのルートディレクトリを基準にパスを解決
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+DATABASE_PATH = os.path.join(BASE_DIR, "db", "bshssa_member_sys.db")
+
+# SQLAlchemyの設定
+SQLALCHEMY_DATABASE_URI = f"sqlite:///{DATABASE_PATH}"
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+# ファイルアップロード機能のための設定
+UPLOAD_FOLDER = os.path.join(BASE_DIR, "documents")
+ALLOWED_EXTENSIONS = {"pdf", "docx", "doc", "xlsx", "xls"}
+```
+
 ## 動作例
 
 初期表示は以下のような感じ。
@@ -200,3 +223,4 @@ def index():
 - [ファイルのアップロード — Flask Documentation (2.2.x)](https://msiz07-flask-docs-ja.readthedocs.io/ja/latest/patterns/fileuploads.html)
 - [メッセージのフラッシュ表示 — Flask Documentation (2.2.x)](https://msiz07-flask-docs-ja.readthedocs.io/ja/latest/patterns/flashing.html)
 - [Flaskによるflashメッセージの体験 #Python - Qiita](https://qiita.com/yu__programming/items/dd0cdc38982b752d45b9)
+- [FlaskにおけるSECRET_KEYの役割についてざっくり理解する - Qiita](https://qiita.com/Ryku/items/09f1b9e6a59f7cdceae8)
