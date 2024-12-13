@@ -1,5 +1,5 @@
 ---
-title: 'Flask Insert Update'
+title: 'Flask で DB のレコードを追加・編集する機能を実装する'
 date: 2024-12-13T00:22:59+09:00
 tags: ["ひとりアドベントカレンダー2024","Python","Flask"]
 author: "OKAZAKI Shogo"
