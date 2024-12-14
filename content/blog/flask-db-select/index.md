@@ -25,28 +25,28 @@ $ sqlite3 db/bshssa_member_sys.db
 
 ```sql
 CREATE TABLE ManagerUser (
-	user_id INTEGER PARIMARY KEY AUTO_INCREMENT COMMENT '管理者ユーザーID',
-	user_name TEXT COMMENT '管理者ユーザー名',
-	password TEXT COMMENT 'パスワード',
-	servide TEXT COMMENT '役務名',
-	logined_at TEXT COMMENT 'ログイン日時'
+	"user_id" INTEGER PARIMARY KEY AUTO_INCREMENT COMMENT '管理者ユーザーID',
+	"user_name" TEXT COMMENT '管理者ユーザー名',
+	"password" TEXT COMMENT 'パスワード',
+	"servide" TEXT COMMENT '役務名',
+	"logined_at" TEXT COMMENT 'ログイン日時'
 );
 
 
 CREATE TABLE "File" (
-	"file_id"	INTEGER NOT NULL UNIQUE COMMENT ファイルID,
-	"file_name"	TEXT COMMENT ファイル名,
-	"display_name"	TEXT　COMMENT ファイルの表示名,
+	"file_id"	INTEGER NOT NULL UNIQUE COMMENT 'ファイルID',
+	"file_name"	TEXT COMMENT 'ファイル名',
+	"display_name"	TEXT　COMMENT 'ファイルの表示名',
 	"url"	TEXT COMMENT "ファイルの所在URL(Google Drive)",
-	"file_type"	TEXT COMMENT ファイル形式,
-	"size"	TEXT COMMENT ファイルサイズ,
-	"description"	TEXT COMMENT ファイルについての説明,
-	"tag"	TEXT COMMENT タグ,
-	"is_standard"	INTEGER COMMENT 定型文書か否か,
-	"created_at"	TEXT COMMENT 作成日時,
-	"created_by"	TEXT COMMENT 作成者の管理者ユーザーID,
-	"updated_at"	TEXT COMMENT 更新日時,
-	"updated_by"	TEXT COMMENT 更新者の管理者ユーザーID,
+	"file_type"	TEXT COMMENT 'ファイル形式',
+	"size"	TEXT COMMENT 'ファイルサイズ',
+	"description"	TEXT COMMENT 'ファイルについての説明',
+	"tag"	TEXT COMMENT 'タグ',
+	"is_standard"	INTEGER COMMENT '定型文書か否か',
+	"created_at"	TEXT COMMENT '作成日時',
+	"created_by"	TEXT COMMENT '作成者の管理者ユーザーID',
+	"updated_at"	TEXT COMMENT '更新日時',
+	"updated_by"	TEXT COMMENT '更新者の管理者ユーザーID',
 	PRIMARY KEY("file_id" AUTOINCREMENT)
 )
 ```
