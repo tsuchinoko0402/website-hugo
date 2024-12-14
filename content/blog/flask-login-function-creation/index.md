@@ -1,5 +1,5 @@
 ---
-'title: 'Flask でユーザー認証の仕組みを入れる（後編）'
+title: 'Flask でユーザー認証の仕組みを入れる（後編）'
 date: 2024-12-18
 tags: ["ひとりアドベントカレンダー2024","Python","Flask", "Flask-Login"]
 author: "OKAZAKI Shogo"
