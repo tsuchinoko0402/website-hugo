@@ -105,7 +105,8 @@ class ManagerUser(UserMixin, db.Model):
 
 @login_manager.user_loader
 def load_user(user_id: str) -> ManagerUser:
-    return ManagerUser.query.get(int(user_id))
+    with db.session() as session:
+        return session.get(ManagerUser, int(user_id))
 ```
 
 ユーザーモデルについては、以下をのこと留意する：
