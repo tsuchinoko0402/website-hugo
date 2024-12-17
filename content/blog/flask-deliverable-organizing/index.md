@@ -3,7 +3,6 @@ title: 'ここまで作成したものの画面遷移と機能を整理する'
 date: 2024-12-17
 tags: ["ひとりアドベントカレンダー2024","Python","Flask"]
 author: "OKAZAKI Shogo"
-draft: true
 ---
 
 ## はじめに
