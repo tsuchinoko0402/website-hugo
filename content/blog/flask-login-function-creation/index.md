@@ -94,15 +94,30 @@ def index():
 
 ## ログインが必要なページへの設定
 
-`@login_required` をつける
+`@login_required` をつければ良い。
+
+```python
+@manage_file_list_bp.route("/", methods=["GET"])
+@login_required
+def index():
+    # 以下略
+```
 
 ## 動作の確認
 
+まずはトップページ。この時点でセッションは何も保存されていないとわかる。
+
 ![動作例1](image.png)
+
+ログイン画面。
 
 ![動作例2](image-1.png)
 
+ログイン完了した後。セッションにユーザー情報が保存されている。
+
 ![動作例3](image-2.png)
+
+ログインが必要な画面への遷移。依然として、セッションにユーザー情報が保存されている。
 
 ![動作例4](image-3.png)
 
