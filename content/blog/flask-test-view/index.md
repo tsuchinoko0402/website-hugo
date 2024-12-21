@@ -3,7 +3,6 @@ title: 'Flask でユニットテストを作成する（View編）'
 date: 2024-12-20
 tags: ["ひとりアドベントカレンダー2024","Python","Flask", "Pytest"]
 author: "OKAZAKI Shogo"
-draft: true
 ---
 ## はじめに
 
