@@ -1,5 +1,5 @@
 ---
-title: 'Flask ログの設定を行う'
+title: 'Google Drive の操作関連の処理を追加する'
 date: 2024-12-24
 tags: ["ひとりアドベントカレンダー2024","Python","Google"]
 author: "OKAZAKI Shogo"
@@ -85,9 +85,121 @@ Google Drive の画面に行き、サービスアカウントで利用したい�
 
 これで、 JSON に書かれた秘密鍵をリヨすいて、先ほど共有設定をしたフォルダを操作することができるようになる。
 
-## Google Drive を操作する
+## Google Drive を Python で操作する
+
+必要なライブラリを追加する。
+
+```shell
+poetry add google-api-python-client google-auth-httplib2 google-auth-oauthlib
+```
+
+### Google Drive を操作するためのコード
+
+今回はアップロードするためのコードを実装する。
+
+`app/util/google_drive.py`
+
+```python
+import logging
+import os
+from dataclasses import dataclass
+from typing import List, Optional
+
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
+from instance.config.dev import CREDENTIAL_SERVICE_ACCOUNT_PATH
+
+error_logger = logging.getLogger("error")
+app_logger = logging.getLogger("app")
 
 
+@dataclass(frozen=True)
+class MimeMapping:
+    """ファイルの拡張子と MINE タイプを対応づけるデータクラス"""
+
+    extension: str
+    mine_type: str
+
+
+# 対応可能なファイルタイプ一覧
+# 参考資料: https://developer.mozilla.org/ja/docs/Web/HTTP/MIME_types/Common_types
+MIME_MAPPINGS = [
+    MimeMapping(".pdf", "application/pdf"),
+    MimeMapping(".doc", "application/msword"),
+    MimeMapping(".docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"),
+    MimeMapping(".xls", "application/vnd.ms-excel"),
+    MimeMapping(".xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"),
+]
+
+# Google Drive スコープ定数
+GOOGLE_DRIVE_SCOPE_EDIT = ["https://www.googleapis.com/auth/drive"]
+GOOGLE_DRIVE_SCOPE_READONLY = ["https://www.googleapis.com/auth/drive.readonly"]
+
+# Google Drive のフォルダ ID
+GOOGLE_DRIVE_FOLDER_ID = "1tmbiC2eiHxenEVF6X5dtfSDIQ8lxIGJ6"
+
+
+def __get_mime_type(extension: str) -> Optional[str]:
+    """特定の拡張子の MIME Type を取得する関数"""
+    for mapping in MIME_MAPPINGS:
+        if mapping.extension == extension:
+            return mapping.mine_type
+    # 未知の拡張子の場合のデフォルト
+    return None
+
+
+def __get_document_path(file_name: str) -> Optional[str]:
+    """documentsフォルダ内の指定されたファイルの絶対パスを返す。
+
+    :param file_name: 参照したいファイル名
+    :return: ファイルの絶対パス
+    """
+    # このスクリプトの位置からプロジェクトのルートディレクトリを計算
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
+    documents_path = os.path.join(project_root, "documents", file_name)
+    app_logger.debug(documents_path)
+
+    # ファイルの存在を確認
+    if not os.path.exists(documents_path):
+        error_logger.error(f"'{file_name}' does not exist in 'documents'.")
+        return None
+
+    return documents_path
+
+
+def __get_credentials(scopes: List[str]):
+    """スコープを受け取り、Google のクレデンシャル情報を返却する"""
+    return service_account.Credentials.from_service_account_file(CREDENTIAL_SERVICE_ACCOUNT_PATH, scopes=scopes)
+
+
+def upload_file_to_gdrive(file_name: str) -> bool:
+    """指定されたファイル名のファイルを Google Drive にアップロードする"""
+    try:
+        app_logger.debug(f"file_name:{file_name}")
+        file_path = __get_document_path(file_name)
+        app_logger.debug(f"file_path:{file_path}")
+
+        _, extension = os.path.splitext(file_path)
+        app_logger.debug(f"ext: {extension}")
+
+        mine_type = __get_mime_type(extension)
+        app_logger.debug(f"mine_type:{mine_type}")
+
+        if file_path and mine_type:
+            credentials = __get_credentials(GOOGLE_DRIVE_SCOPE_EDIT)
+            drive_service = build("drive", "v3", credentials=credentials)
+            media = MediaFileUpload(file_path, mimetype=mine_type, resumable=True)
+            file_metadata = {"name": file_name, "mimeType": mine_type, "parents": [GOOGLE_DRIVE_FOLDER_ID]}
+            # Google Driveへのアップロード処理
+            file = drive_service.files().create(body=file_metadata, media_body=media).execute()
+            app_logger.info(file)
+            return True
+        return False
+    except Exception as e:
+        error_logger.error(f"Error uploading file: {e}")
+        return False
+```
 
 ## 参考資料
 
@@ -97,55 +209,3 @@ Google Drive の画面に行き、サービスアカウントで利用したい�
 - [\[Python\] Googleドライブ上のファイルをダウンロードする｜こはた](https://note.com/kohaku935/n/nd7e984e8676c)
 - [\[Python\] Googleドライブにファイルをアップロードする｜こはた](https://note.com/kohaku935/n/n99779e59561b)
 - [PythonからGoogleDriveにファイルをアップロード #PyDrive2 - Qiita](https://qiita.com/sey323/items/875c0ab1585044772ab2)
-
-### x. Markdown CheetSheet
-
-#### Text Format
-
-_Italic（斜体）_
-*Italic（斜体）*
-
-__Emphasis（強調）__
-**Emphasis（強調）**
-
-~~Strikethrough（取り消し線）~~
-
-<details><summary>これは詳細表示の例です。</summary>詳細をこっちに書きます。</details>
-
-This is `inline`.
-
-### List
-* text
-    * test
-    * test
-
-- text
-    - test
-    - test
-
-1. text
-1. test
-    1. test
-
-#### Horizontal rules
-* * *
-***
-*****
-- - -
----------------------------------------
-
-#### Blockquotes（引用）
-> This is Blockquotes
-
-#### Links（参照）
-[yonehub blog](https://yonehub.y10e.com/)
-
-#### Images（画像）
-![sample](/img/sample/sample.png)
-
-#### Tables（表）
-| id     | name    | date       |
-| ------ | ------- | ---------- |
-| 1      | test    | 2019-01-01 |
-| 2      | test    | 2019-01-02 |
-| 3      | test    | 2019-01-03 |
