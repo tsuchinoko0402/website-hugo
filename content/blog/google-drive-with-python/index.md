@@ -3,7 +3,6 @@ title: 'Google Drive の操作関連の処理を追加する'
 date: 2024-12-24
 tags: ["ひとりアドベントカレンダー2024","Python","Google"]
 author: "OKAZAKI Shogo"
-draft: true
 ---
 
 ## はじめに
