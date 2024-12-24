@@ -80,7 +80,6 @@ Google Drive の画面に行き、サービスアカウントで利用したい�
 
 ![](./012.png)
 ![](./013.png)
-![](./014.png)
 
 これで、 JSON に書かれた秘密鍵をリヨすいて、先ほど共有設定をしたフォルダを操作することができるようになる。
 
@@ -209,4 +208,3 @@ def upload_file_to_gdrive(file_name: str) -> bool:
 - [GoogleDrive のファイル操作（アップロード／ダウンロード）を自動化する #Python - Qiita](https://qiita.com/saurus12/items/b4c851211d768a0f1212)
 - [\[Python\] Googleドライブ上のファイルをダウンロードする｜こはた](https://note.com/kohaku935/n/nd7e984e8676c)
 - [\[Python\] Googleドライブにファイルをアップロードする｜こはた](https://note.com/kohaku935/n/n99779e59561b)
-- [PythonからGoogleDriveにファイルをアップロード #PyDrive2 - Qiita](https://qiita.com/sey323/items/875c0ab1585044772ab2)
