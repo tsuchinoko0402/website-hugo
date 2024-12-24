@@ -1,20 +1,9 @@
 ---
 title: 'Keep Python Code Quality'
-date: 2024-12-25T23:27:13+09:00
+date: 2024-12-25T07:00:13+09:00
 tags: ["ひとりアドベントカレンダー2024","Python"]
 author: "OKAZAKI Shogo"
 ---
-<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js">
-</script>
-<script type="text/x-mathjax-config">
- MathJax.Hub.Config({
- tex2jax: {
- inlineMath: [['$', '$'] ],
- displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
- }
- });
-</script>
-
 ## はじめに
 
 「OKAZAKI Shogo のひとりアドベントカレンダー2024」の18日目です。ついに最終日です。
@@ -357,4 +346,4 @@ Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc 
 - [Pythonの Ruff (linter) でコード整形もできるようになりました #flake8 - Qiita](https://qiita.com/ciscorn/items/bf78b7ad8e0e332f891b)
 - [pytestのすぐに使えるカバレッジ計測 #Python - Qiita](https://qiita.com/kg1/items/e2fc65e4189faf50bfe6)
 - [サイクロマティック複雑度の計測ツール「lizard」のセットアップ&使い方 #Python - Qiita](https://qiita.com/uhooi/items/a1a96a2d7f5e081e2049)
-- [lizardを使ってCCNというコード品質の指標を学ぶ](https://zenn.dev/koya6565/articles/20230330_lizard-ccn)z
+- [lizardを使ってCCNというコード品質の指標を学ぶ](https://zenn.dev/koya6565/articles/20230330_lizard-ccn)
