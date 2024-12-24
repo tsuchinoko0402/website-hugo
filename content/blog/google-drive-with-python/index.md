@@ -200,6 +200,8 @@ def upload_file_to_gdrive(file_name: str) -> bool:
         return False
 ```
 
+`upload_file_to_gdrive()` を Flask のコード内で用いれば、指定したファイルを Google Drive にアップすることができる。
+
 ## 参考資料
 
 - [Google Cloud プロジェクトを作成する  |  Google Workspace  |  Google for Developers](https://developers.google.com/workspace/guides/create-project?hl=ja)
