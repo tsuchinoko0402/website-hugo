@@ -1,7 +1,7 @@
 ---
-title: 'Keep Python Code Quality'
+title: 'Python コードの品質を保つためのツールの導入（Ruff, pytest-cov, lizard）'
 date: 2024-12-25T07:00:13+09:00
-tags: ["ひとりアドベントカレンダー2024","Python"]
+tags: ["ひとりアドベントカレンダー2024","Python", "Ruff", "lizard"]
 author: "OKAZAKI Shogo"
 ---
 ## はじめに
