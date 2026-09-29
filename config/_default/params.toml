@@ -19,7 +19,8 @@ disableImageOptimization = false
 disableTextInHeader = false
 
 # defaultBackgroundImage = "IMAGE.jpg" # used as default for background images 
-# defaultFeaturedImage = "IMAGE.jpg" # used as default for featured images in all articles
+defaultFeaturedImage = "img/top-image.jpg" # used as default for featured images in all articles
+images = ["img/top-image.jpg"] # used as default fallback image for OpenGraph / Twitter Cards
 
 highlightCurrentMenuArea = true
 # smartTOC = true
